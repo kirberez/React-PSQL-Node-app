@@ -1,5 +1,5 @@
 import express from "express";
-import { getData } from "./controller/data.controller.js";
+import { getData, filterData, sortData, addData } from "./controller/data.controller.js";
 
 
 const PORT = process.env.PORT || 8080;
@@ -21,6 +21,38 @@ app.get('/', (req, res) => {
     })
     .catch(error => {
       console.log('ERROR')
+      res.status(500).send(error);
+    })
+});
+
+app.get(`/filter`, (req, res) => {
+  filterData(req.query.column, req.query.oper, req.query.value)
+    .then(response => {
+      res.status(200).send(response);
+    })
+    .catch(error => {
+      console.log('ERROR in filter GET')
+      res.status(500).send(error);
+    })
+})
+
+app.get(`/sort`, (req, res) => {
+  sortData(req.query.column, req.query.sort)
+    .then(response => {
+      res.status(200).send(response);
+    })
+    .catch(error => {
+      console.log('ERROR in sort GET')
+      res.status(500).send(error);
+    })
+})
+
+app.post('/add', (req, res) => {
+  createData(req.body)
+    .then(response => {
+      res.status(200).send(response);
+    })
+    .catch(error => {
       res.status(500).send(error);
     })
 });
