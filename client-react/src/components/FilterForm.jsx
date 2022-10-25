@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import MyInput from './UI/input/MyInput';
 import MySelect from './UI/select/MySelect';
 import MyButton from './UI/button/MyButton';
 
-const FilterForm = ({filter, setFilter, setRows}) => {
+const FilterForm = ({setRows}) => {
+  const [filter, setFilter] = useState({
+    column: '',
+    condition: '',
+    query: ''
+  })
 
   const getFilterData = (e) => {
     e.preventDefault();
@@ -20,6 +25,7 @@ const FilterForm = ({filter, setFilter, setRows}) => {
   }
   return (
     <form>
+      <h3>Фильтр</h3>
       <MySelect 
         value={filter.column}
         onChange={val => setFilter({...filter, column: val})}

@@ -37,7 +37,7 @@ app.get(`/filter`, (req, res) => {
 })
 
 app.get(`/sort`, (req, res) => {
-  sortData(req.query.column, req.query.sort)
+  sortData(req.query.column, req.query.condition)
     .then(response => {
       res.status(200).send(response);
     })

@@ -35,8 +35,8 @@ export const filterData = (column, oper, value) => {
 
 // Отсортировать строки
 // !TODO Если применён фильтр, то сортировка собьёт его - исправить! 
-export const sortData = (column, sort) => {
-  const query = `SELECT id, date::timestamp::date, title, quantity, price FROM products ORDER BY ${column} ${sort};`;
+export const sortData = (column, condition) => {
+  const query = `SELECT id, date::timestamp::date, title, quantity, price FROM products ORDER BY ${column} ${condition};`;
   return new Promise((resolve, reject) => {
     pool.query(query, (error, results) => {
       if (error) {

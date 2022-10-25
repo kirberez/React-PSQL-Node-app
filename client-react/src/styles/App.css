@@ -15,6 +15,14 @@
   align-items: center;
 }
 
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
 .App {
   text-align: center;
 }
@@ -43,4 +51,9 @@ h3 {
   align-items: center;
   justify-content: center;
   padding: 10px 15px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
 }
