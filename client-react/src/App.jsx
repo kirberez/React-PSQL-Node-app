@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import AddForm from './components/AddForm.jsx';
+import FilterForm from './components/FilterForm.jsx';
 import Items from './components/Items.jsx';
 import MyButton from './components/UI/button/MyButton.jsx';
 import MyModal from './components/UI/modal/MyModal.jsx';
@@ -8,11 +9,17 @@ import './styles/App.css';
 function App() {
   const [rows, setRows] = useState([]);
   const [visible, setVisible] = useState(false);
+  const [filter, setFilter] = useState({
+    column: '',
+    condition: '',
+    query: ''
+  })
+
   useEffect(() => {
     getData();
   }, []);
 
-  function getData() {
+  const getData = () => {
     fetch('http://localhost:8080')
       .then(response => {
         return response.text();
@@ -33,8 +40,9 @@ function App() {
 
   return (
     <div className='container'>
+      <FilterForm filter={filter} setFilter={setFilter} setRows={setRows} />
       <MyButton
-        style={{marginTop: 30}}
+        style={{marginTop: 15, marginBottom: 15}}
         onClick={() => setVisible(true)}
       >
         Добавить строку
