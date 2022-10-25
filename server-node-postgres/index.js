@@ -18,7 +18,7 @@ app.get('/', (req, res) => {
   getData()
     .then(response => {
       res.status(200).send(response);
-    })
+    }) 
     .catch(error => {
       console.log('ERROR')
       res.status(500).send(error);
@@ -48,7 +48,7 @@ app.get(`/sort`, (req, res) => {
 })
 
 app.post('/add', (req, res) => {
-  createData(req.body)
+  addData(req.body)
     .then(response => {
       res.status(200).send(response);
     })

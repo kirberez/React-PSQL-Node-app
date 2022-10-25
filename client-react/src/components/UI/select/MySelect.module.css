@@ -1,0 +1,10 @@
+.mySelect {
+  margin: 5px 0;
+  padding: 5px 15px;
+  outline: none;
+  border: 1px solid teal;
+}
+
+.mySelect:not(:last-child) {
+  margin-right: 15px;
+}
